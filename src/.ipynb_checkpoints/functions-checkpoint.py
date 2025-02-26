@@ -47,3 +47,31 @@ def process_temperatures(interval=5):
 
 import sys
 
+def initialize_display():
+    """Prints the initial layout for displaying temperatures."""
+    print("Current temperatures:")
+    print("Latest Temperatures: Sensor 1: --°C Sensor 2: --°C Sensor 3: --°C")
+    print("Sensor 1 Average: --°C")
+    print("Sensor 2 Average: --°C")
+    print("Sensor 3 Average: --°C")
+
+
+
+def update_display(interval=5):
+    """Updates the temperature display in-place without misalignment issues."""
+    while True:
+        with lock:
+            # Prepare formatted temperature strings
+            sensor_temps = ' '.join(f"Sensor {i+1}: {latest_temperatures.get(i, '--')}°C" for i in range(3))
+            avg_temps = ' '.join(f"Sensor {i+1} Average: {temperature_averages.get(i, '--')}°C" for i in range(3))
+
+            # Move cursor up and clear previous output properly
+            sys.stdout.write("\033[F" * 4)  # Move cursor up by 4 lines
+            sys.stdout.write("\033[K")  # Clear current line
+            print(f"Latest Temperatures: {sensor_temps}")
+            print(f"Sensor 1 Average: {temperature_averages.get(0, '--')}°C")
+            print(f"Sensor 2 Average: {temperature_averages.get(1, '--')}°C")
+            print(f"Sensor 3 Average: {temperature_averages.get(2, '--')}°C")
+
+            sys.stdout.flush()  # Force update to console
+        time.sleep(interval)
