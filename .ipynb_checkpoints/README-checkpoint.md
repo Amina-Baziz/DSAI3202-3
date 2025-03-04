@@ -1,2 +1,0 @@
-this is lab 4 part1 
-We used RLock to prevent simultaneous modifications in latest_temperatures and update_display, while Condition ensured process_temperatures waited for new data before computing averages. The professor likely skipped metrics since the focus is on real-time synchronization rather than performance analysis, as frequent updates make efficiency measurement unnecessary.
