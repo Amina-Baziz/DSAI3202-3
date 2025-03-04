@@ -1,1 +1,2 @@
-hello this is DSAI3202 course
+lab 3 part 2
+As the program moves from sequential to threaded to multiprocessing implementations, execution time changes significantly. In sequential execution, the program runs one operation at a time, leading to the longest execution time. With threading, Python’s Global Interpreter Lock (GIL) restricts CPU-bound tasks, so it does not provide a significant speedup for tasks like hyperparameter tuning but is beneficial for I/O-bound operations. Multiprocessing, on the other hand, creates multiple independent processes that bypass the GIL and fully utilize multiple CPU cores, significantly reducing execution time compared to sequential execution.
